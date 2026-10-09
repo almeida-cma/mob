@@ -1,0 +1,1340 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📚 Guia de Estudo — Programação Mobile (Nível Iniciante)</title>
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+        min-height: 100vh;
+        padding: 30px 16px;
+        color: #1e293b;
+    }
+
+    .container { max-width: 950px; margin: 0 auto; }
+
+    /* ===== HEADER ===== */
+    .header {
+        background: linear-gradient(135deg, #f7971e, #ffd200);
+        border-radius: 20px;
+        padding: 34px 26px;
+        margin-bottom: 22px;
+        text-align: center;
+        color: #1a1a2e;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .header h1 { font-size: 1.85rem; margin-bottom: 8px; font-weight: 800; }
+    .header h1 span { color: #0f2027; }
+    .header p { font-size: 1rem; line-height: 1.6; opacity: 0.9; }
+
+    .badge-group {
+        display: flex; flex-wrap: wrap; gap: 8px;
+        justify-content: center; margin-top: 14px;
+    }
+
+    .badge {
+        background: rgba(0, 0, 0, 0.12);
+        padding: 5px 14px;
+        border-radius: 30px;
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: #1a1a2e;
+    }
+
+    /* ===== INTRO ===== */
+    .intro-card {
+        background: white;
+        border-radius: 16px;
+        padding: 22px 26px;
+        margin-bottom: 22px;
+        box-shadow: 0 8px 22px rgba(0, 0, 0, 0.1);
+        border-left: 5px solid #f7971e;
+        font-size: 0.92rem;
+        line-height: 1.75;
+        color: #334155;
+    }
+
+    /* ===== SEÇÕES ===== */
+    .secao-titulo {
+        background: linear-gradient(135deg, #f7971e, #ffd200);
+        color: #1a1a2e;
+        padding: 14px 22px;
+        border-radius: 12px;
+        margin: 32px 0 18px;
+        font-size: 1.1rem;
+        font-weight: 800;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+    }
+
+    /* ===== TÓPICO (conteúdo) ===== */
+    .topico {
+        background: white;
+        border-radius: 16px;
+        padding: 24px 28px;
+        margin-bottom: 18px;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+        border-left: 5px solid #0ea5e9;
+    }
+
+    .topico h3 {
+        color: #0f172a;
+        font-size: 1.05rem;
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .topico p, .topico li {
+        font-size: 0.93rem;
+        line-height: 1.8;
+        color: #334155;
+    }
+
+    .topico ul, .topico ol {
+        margin: 10px 0 10px 22px;
+    }
+
+    .topico li { margin-bottom: 4px; }
+
+    .topico code {
+        background: #f1f5f9;
+        color: #0e7490;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-family: 'Courier New', monospace;
+        font-size: 0.85rem;
+        font-weight: 700;
+    }
+
+    .destaque {
+        background: #fff7ed;
+        border-left: 4px solid #f59e0b;
+        border-radius: 8px;
+        padding: 12px 16px;
+        margin-top: 12px;
+        font-size: 0.88rem;
+        color: #78350f;
+        line-height: 1.7;
+    }
+
+    .destaque strong { color: #b45309; }
+
+    /* ===== QUESTÃO DE FIXAÇÃO ===== */
+    .fixacao {
+        background: #f0fdfa;
+        border: 2px dashed #14b8a6;
+        border-radius: 12px;
+        padding: 16px 20px;
+        margin-top: 16px;
+    }
+
+    .fixacao-titulo {
+        font-size: 0.78rem;
+        font-weight: 800;
+        color: #0f766e;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .fixacao-item {
+        background: white;
+        border-radius: 10px;
+        padding: 14px 16px;
+        margin-bottom: 10px;
+        border-left: 4px solid #14b8a6;
+    }
+
+    .fixacao-item:last-child { margin-bottom: 0; }
+
+    .fixacao-item .pergunta {
+        font-size: 0.9rem;
+        color: #0f172a;
+        line-height: 1.7;
+        margin-bottom: 10px;
+        font-weight: 600;
+    }
+
+    .fixacao-item .alternativas-fix {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        margin-bottom: 10px;
+    }
+
+    .fixacao-item .alt-fix {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 9px 14px;
+        background: #f8fafc;
+        border: 2px solid #e2e8f0;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.2s;
+        font-size: 0.87rem;
+    }
+
+    .fixacao-item .alt-fix:hover:not(.desabilitada) {
+        border-color: #14b8a6;
+        background: #f0fdfa;
+    }
+
+    .fixacao-item .alt-fix input[type="radio"] {
+        width: 16px;
+        height: 16px;
+        accent-color: #14b8a6;
+        flex-shrink: 0;
+        cursor: pointer;
+    }
+
+    .fixacao-item .alt-fix.correta {
+        background: #dcfce7; border-color: #16a34a;
+    }
+    .fixacao-item .alt-fix.correta span { color: #14532d; font-weight: 700; }
+
+    .fixacao-item .alt-fix.incorreta {
+        background: #fee2e2; border-color: #dc2626;
+    }
+    .fixacao-item .alt-fix.incorreta span { color: #7f1d1d; }
+
+    .fixacao-item .alt-fix.desabilitada { cursor: default; opacity: 0.9; }
+
+    .btn-gab {
+        background: linear-gradient(135deg, #14b8a6, #0ea5e9);
+        color: white;
+        border: none;
+        padding: 8px 20px;
+        border-radius: 22px;
+        cursor: pointer;
+        font-size: 0.82rem;
+        font-weight: 700;
+        font-family: inherit;
+        transition: 0.2s;
+    }
+
+    .btn-gab:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(20,184,166,0.4); }
+
+    .gab-fix {
+        display: none;
+        margin-top: 10px;
+        background: #f0fdfa;
+        border-left: 4px solid #14b8a6;
+        border-radius: 8px;
+        padding: 12px 16px;
+        font-size: 0.85rem;
+        color: #0f766e;
+        line-height: 1.7;
+    }
+
+    .gab-fix.show { display: block; }
+
+    /* ===== QUIZ ===== */
+    .quiz-questao {
+        background: white;
+        border-radius: 14px;
+        padding: 20px 24px;
+        margin-bottom: 16px;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+        border-left: 5px solid #0ea5e9;
+    }
+
+    .quiz-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 12px;
+        margin-bottom: 12px;
+        padding-bottom: 10px;
+        border-bottom: 1px dashed #e2e8f0;
+    }
+
+    .quiz-num {
+        background: linear-gradient(135deg, #f7971e, #ffd200);
+        color: #1a1a2e;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 0.72rem;
+        font-weight: 800;
+        white-space: nowrap;
+    }
+
+    .quiz-enunciado {
+        font-size: 0.92rem;
+        line-height: 1.75;
+        color: #334155;
+        margin-bottom: 12px;
+    }
+
+    .quiz-enunciado code {
+        background: #f1f5f9;
+        color: #0e7490;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-family: 'Courier New', monospace;
+        font-size: 0.85rem;
+        font-weight: 700;
+    }
+
+    .quiz-alt {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 11px 16px;
+        background: #f8fafc;
+        border: 2px solid #e2e8f0;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: all 0.2s;
+        margin-bottom: 8px;
+        font-size: 0.9rem;
+    }
+
+    .quiz-alt:last-child { margin-bottom: 0; }
+
+    .quiz-alt:hover:not(.desabilitada) {
+        border-color: #0ea5e9;
+        background: #f0f9ff;
+        transform: translateX(3px);
+    }
+
+    .quiz-alt input[type="radio"] {
+        width: 18px; height: 18px;
+        cursor: pointer;
+        accent-color: #0ea5e9;
+        flex-shrink: 0;
+    }
+
+    .quiz-alt span { color: #334155; flex: 1; line-height: 1.5; }
+
+    .quiz-alt.correta { background: #dcfce7; border-color: #16a34a; }
+    .quiz-alt.correta span { color: #14532d; font-weight: 700; }
+    .quiz-alt.incorreta { background: #fee2e2; border-color: #dc2626; }
+    .quiz-alt.incorreta span { color: #7f1d1d; }
+    .quiz-alt.desabilitada { cursor: default; opacity: 0.9; }
+
+    .gab-quiz {
+        display: none;
+        margin-top: 10px;
+        background: #f0fdfa;
+        border-left: 4px solid #14b8a6;
+        border-radius: 8px;
+        padding: 10px 14px;
+        font-size: 0.82rem;
+        color: #0f766e;
+        line-height: 1.6;
+    }
+
+    .gab-quiz.show { display: block; }
+
+    /* ===== AÇÕES ===== */
+    .acoes {
+        text-align: center;
+        margin: 30px 0;
+    }
+
+    .btn {
+        background: linear-gradient(135deg, #f7971e, #ffd200);
+        color: #1a1a2e;
+        border: none;
+        padding: 14px 34px;
+        border-radius: 30px;
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: 800;
+        font-family: inherit;
+        margin: 6px;
+        transition: 0.2s;
+        box-shadow: 0 6px 20px rgba(247, 151, 30, 0.35);
+    }
+
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 26px rgba(247, 151, 30, 0.5); }
+    .btn:disabled { background: #cbd5e1; cursor: not-allowed; box-shadow: none; transform: none; }
+    .btn-secondary { background: linear-gradient(135deg, #64748b, #475569); color: white; }
+    .btn-imprimir { background: linear-gradient(135deg, #10b981, #059669); color: white; }
+
+    /* ===== RESULTADO FINAL ===== */
+    .resultado-final {
+        display: none;
+        background: white;
+        border-radius: 20px;
+        padding: 30px 26px;
+        margin-top: 30px;
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+        border: 3px solid #14b8a6;
+        text-align: center;
+    }
+
+    .resultado-final.show { display: block; }
+
+    .resultado-final h2 {
+        color: #0f766e;
+        font-size: 1.35rem;
+        margin-bottom: 14px;
+    }
+
+    .nota-final {
+        font-size: 3.2rem;
+        font-weight: 900;
+        color: #14b8a6;
+        margin: 10px 0;
+    }
+
+    .nota-descricao {
+        color: #64748b;
+        font-size: 0.95rem;
+        margin-bottom: 20px;
+    }
+
+    .resultado-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 12px;
+        margin: 20px 0;
+    }
+
+    .resultado-item {
+        background: #f8fafc;
+        border: 2px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 16px;
+    }
+
+    .resultado-item .numero {
+        font-size: 1.7rem;
+        font-weight: 900;
+        color: #14b8a6;
+    }
+
+    .resultado-item .rotulo {
+        font-size: 0.75rem;
+        color: #64748b;
+        text-transform: uppercase;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        margin-top: 4px;
+    }
+
+    .mensagem-final {
+        background: #f0fdfa;
+        border-left: 5px solid #14b8a6;
+        border-radius: 10px;
+        padding: 14px 20px;
+        margin-top: 20px;
+        font-size: 0.93rem;
+        color: #0f766e;
+        line-height: 1.7;
+        text-align: left;
+    }
+
+    /* ===== GABARITO CONSOLIDADO ===== */
+    .gabarito-final {
+        display: none;
+        background: white;
+        border-radius: 16px;
+        padding: 24px 26px;
+        margin-top: 24px;
+        box-shadow: 0 8px 22px rgba(0, 0, 0, 0.1);
+        border: 2px solid #0ea5e9;
+    }
+
+    .gabarito-final.show { display: block; }
+
+    .gabarito-final h3 {
+        color: #0369a1;
+        font-size: 1.05rem;
+        margin-bottom: 14px;
+        padding-bottom: 10px;
+        border-bottom: 2px dashed #0ea5e9;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .gabarito-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 10px;
+    }
+
+    .gab-item {
+        background: #f8fafc;
+        border-radius: 10px;
+        padding: 10px 14px;
+        font-size: 0.85rem;
+        color: #334155;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-left: 4px solid #0ea5e9;
+    }
+
+    .gab-item strong { color: #0e7490; }
+
+    /* ===== FOOTER ===== */
+    .footer-card {
+        background: white;
+        border-radius: 20px;
+        padding: 24px;
+        margin-top: 30px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+    .footer-card p {
+        font-size: 0.78rem;
+        color: #64748b;
+        line-height: 1.7;
+    }
+
+    /* ===== RESPONSIVO ===== */
+    @media (max-width: 600px) {
+        body { padding: 16px 8px; }
+        .header { padding: 22px 16px; }
+        .header h1 { font-size: 1.3rem; }
+        .topico { padding: 18px 18px; }
+        .quiz-questao { padding: 16px 18px; }
+        .secao-titulo { font-size: 0.98rem; padding: 12px 16px; }
+        .nota-final { font-size: 2.5rem; }
+        .btn { padding: 12px 22px; font-size: 0.9rem; }
+    }
+
+    @media print {
+        body { background: white; padding: 0; }
+        .btn, .acoes, .no-print { display: none !important; }
+        .gab-fix, .gab-quiz, .resultado-final, .gabarito-final { display: block !important; }
+        .topico, .quiz-questao { box-shadow: none; border: 1px solid #cbd5e1; page-break-inside: avoid; }
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <!-- ===== HEADER ===== -->
+    <header class="header">
+        <h1>📚 GUIA DE ESTUDO — <span>PROGRAMAÇÃO MOBILE</span></h1>
+        <p>Resumo conceitual + questões de fixação + quiz final</p>
+        <div class="badge-group">
+            <span class="badge">📖 5 tópicos</span>
+            <span class="badge">🎯 14 fixações</span>
+            <span class="badge">🏆 20 questões no quiz</span>
+            <span class="badge">📊 Nível Iniciante</span>
+        </div>
+    </header>
+
+    <!-- ===== INTRO ===== -->
+    <div class="intro-card">
+        👋 <strong>Bem-vindo(a) ao seu guia de preparação!</strong><br>
+        Este material foi organizado para revisar <strong>tudo o que será cobrado na avaliação</strong>.
+        Estude tópico por tópico, responda as <strong>questões de fixação</strong> (com gabarito imediato) e,
+        ao final, encare o <strong>quiz com 20 questões objetivas</strong> para testar seus conhecimentos.
+        <br><br>
+        💡 <strong>Dica de estudo:</strong> leia o resumo, responda as fixações, confira o gabarito,
+        e só depois vá para o próximo tópico. No fim, faça o quiz sem consultar.
+    </div>
+
+    <!-- ============================================================
+         TÓPICO 1 — HTML, CSS e JavaScript
+         ============================================================ -->
+    <div class="secao-titulo">🧩 TÓPICO 1 · HTML, CSS e JavaScript — Os Três Pilares da Web</div>
+
+    <div class="topico">
+        <h3>📖 O que você precisa saber</h3>
+        <p>Todo aplicativo web ou mobile construído com tecnologias web usa <strong>três camadas</strong> com papéis bem definidos:</p>
+        <ul>
+            <li><strong>HTML (HyperText Markup Language):</strong> define a <strong>estrutura</strong> da interface — textos, títulos, botões, imagens, formulários. É o "esqueleto" da tela.</li>
+            <li><strong>CSS (Cascading Style Sheets):</strong> cuida da <strong>aparência visual</strong> — cores, fontes, tamanhos, margens, bordas, espaçamentos, layout. É a "pele" da tela.</li>
+            <li><strong>JavaScript:</strong> adiciona <strong>comportamento e interatividade</strong> — responde a cliques, valida formulários, altera o conteúdo em tempo real. É o "cérebro" da tela.</li>
+        </ul>
+        <div class="destaque">
+            ⚠️ <strong>Ponto de atenção:</strong> o JavaScript <strong>NÃO substitui</strong> HTML nem CSS. Ele trabalha <strong>junto</strong>, manipulando os elementos criados pelo HTML e estilizados pelo CSS.
+        </div>
+
+        <!-- Fixação T1 -->
+        <div class="fixacao">
+            <div class="fixacao-titulo">🎯 Questões de fixação — Tópico 1</div>
+
+            <div class="fixacao-item" id="fix-t1-1">
+                <div class="pergunta">1. Qual tecnologia é responsável por definir a estrutura e os elementos que aparecem na tela (textos, botões, formulários)?</div>
+                <div class="alternativas-fix">
+                    <label class="alt-fix"><input type="radio" name="ft1q1" value="A"><span>A) CSS</span></label>
+                    <label class="alt-fix"><input type="radio" name="ft1q1" value="B"><span>B) JavaScript</span></label>
+                    <label class="alt-fix"><input type="radio" name="ft1q1" value="C"><span>C) HTML</span></label>
+                    <label class="alt-fix"><input type="radio" name="ft1q1" value="D"><span>D) Python</span></label>
+                </div>
+                <button class="btn-gab" onclick="verificarFix('ft1q1','C','HTML é a linguagem de marcação que define a estrutura e os elementos da interface.','fix-t1-1')">Ver resposta</button>
+                <div class="gab-fix"></div>
+            </div>
+
+            <div class="fixacao-item" id="fix-t1-2">
+                <div class="pergunta">2. Sobre a relação entre HTML, CSS e JavaScript, assinale a alternativa <strong>correta</strong>:</div>
+                <div class="alternativas-fix">
+                    <label class="alt-fix"><input type="radio" name="ft1q2" value="A"><span>A) O JavaScript substitui completamente o HTML e o CSS.</span></label>
+                    <label class="alt-fix"><input type="radio" name="ft1q2" value="B"><span>B) O CSS define a estrutura e o HTML cuida da aparência.</span></label>
+                    <label class="alt-fix"><input type="radio" name="ft1q2" value="C"><span>C) O HTML estrutura, o CSS estiliza e o JavaScript adiciona interatividade.</span></label>
+                    <label class="alt-fix"><input type="radio" name="ft1q2" value="D"><span>D) As três tecnologias fazem exatamente a mesma coisa.</span></label>
+                </div>
+                <button class="btn-gab" onclick="verificarFix('ft1q2','C','Cada tecnologia tem um papel distinto e complementar: estrutura (HTML), estilo (CSS) e comportamento (JS).','fix-t1-2')">Ver resposta</button>
+                <div class="gab-fix"></div>
+            </div>
+
+            <div class="fixacao-item" id="fix-t1-3">
+                <div class="pergunta">3. Qual das opções abaixo é uma responsabilidade típica do <strong>CSS</strong>?</div>
+                <div class="alternativas-fix">
+                    <label class="alt-fix"><input type="radio" name="ft1q3" value="A"><span>A) Criar a lógica condicional de um botão.</span></label>
+                    <label class="alt-fix"><input type="radio" name="ft1q3" value="B"><span>B) Definir a cor de fundo, fonte e margens de um elemento.</span></label>
+                    <label class="alt-fix"><input type="radio" name="ft1q3" value="C"><span>C) Inserir um parágrafo na página.</span></label>
+                    <label class="alt-fix"><input type="radio" name="ft1q3" value="D"><span>D) Conectar a aplicação ao banco de dados.</span></label>
+                </div>
+                <button class="btn-gab" onclick="verificarFix('ft1q3','B','O CSS é responsável pela aparência visual: cores, fontes, margens, bordas e dimensões.','fix-t1-3')">Ver resposta</button>
+                <div class="gab-fix"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         TÓPICO 2 — Android e Dispositivos Móveis
+         ============================================================ -->
+    <div class="secao-titulo">🤖 TÓPICO 2 · Android e Dispositivos Móveis</div>
+
+    <div class="topico">
+        <h3>📖 O que você precisa saber</h3>
+        <ul>
+            <li><strong>Origem do Android:</strong> criado pela Android Inc. (2003), comprado pelo Google em 2005 e lançado comercialmente em 2008. É baseado no <strong>Kernel Linux</strong>.</li>
+            <li><strong>Arquitetura em camadas:</strong> Kernel Linux → Camada de abstração de hardware (HAL) → Bibliotecas nativas + Android Runtime → Framework de aplicação → Aplicativos.</li>
+            <li><strong>Dalvik → ART:</strong> a máquina virtual original do Android era a <strong>Dalvik</strong>; foi substituída pelo <strong>ART (Android Runtime)</strong>, mais eficiente (compilação AOT).</li>
+            <li><strong>Sensores:</strong> dispositivos móveis integram <strong>GPS, câmera, acelerômetro, giroscópio, bússola, sensor de proximidade</strong>, etc. Aplicativos podem (e devem) usá-los para enriquecer a experiência.</li>
+            <li><strong>AndroidManifest.xml:</strong> arquivo de configuração que declara permissões, atividades e componentes do app.</li>
+        </ul>
+        <div class="destaque">
+            ⚠️ <strong>Ponto de atenção:</strong> é <strong>falso</strong> afirmar que dispositivos móveis não integram sensores. Eles são justamente um dos grandes diferenciais da plataforma móvel em relação ao desktop.
+        </div>
+
+        <!-- Fixação T2 -->
+        <div class="fixacao">
+            <div class="fixacao-titulo">🎯 Questões de fixação — Tópico 2</div>
+
+            <div class="fixacao-item" id="fix-t2-1">
+                <div class="pergunta">1. Qual é a camada base da arquitetura do sistema operacional Android?</div>
+                <div class="alternativas-fix">
+                    <label class="alt-fix"><input type="radio" name="ft2q1" value="A"><span>A) Framework de aplicação</span></label>
+                    <label class="alt-fix"><input type="radio" name="ft2q1" value="B"><span>B) Kernel Linux</span></label>
+                    <label class="alt-fix"><input type="radio" name="ft2q1" value="C"><span>C) Dalvik</span></label>
+                    <label class="alt-fix"><input type="radio" name="ft2q1" value="D"><span>D) Google Play</span></label>
+                </div>
+                <button class="btn-gab" onclick="verificarFix('ft2q1','B','A base da arquitetura do Android é o Kernel Linux, sobre o qual todas as outras camadas são construídas.','fix-t2-1')">Ver resposta</button>
+                <div class="gab-fix"></div>
+            </div>
+
+            <div class="fixacao-item" id="fix-t2-2">
+                <div class="pergunta">2. O que é o ART no contexto do Android?</div>
+                <div class="alternativas-fix">
+                    <label class="alt-fix"><input type="radio" name="ft2q2" value="A"><span>A) Um editor de imagens.</span></label>
+                    <label class="alt-fix"><input type="radio" name="ft2q2" value="B"><span>B) Uma linguagem de programação.</span></label>
+                    <label class="alt-fix"><input type="radio" name="ft2q2" value="C"><span>C) O Android Runtime, evolução da máquina virtual Dalvik.</span></label>
+                    <label class="alt-fix"><input type="radio" name="ft2q2" value="D"><span>D) Um banco de dados do sistema.</span></label>
+                </div>
+                <button class="btn-gab" onclick="verificarFix('ft2q2','C','O ART (Android Runtime) substituiu a Dalvik, trazendo compilação AOT e melhor desempenho.','fix-t2-2')">Ver resposta</button>
+                <div class="gab-fix"></div>
+            </div>
+
+            <div class="fixacao-item" id="fix-t2-3">
+                <div class="pergunta">3. Sobre os sensores em dispositivos móveis, é correto afirmar que:</div>
+                <div class="alternativas-fix">
+                    <label class="alt-fix"><input type="radio" name="ft2q3" value="A"><span>A) Dispositivos móveis não possuem sensores integrados.</span></label>
+                    <label class="alt-fix"><input type="radio" name="ft2q3" value="B"><span>B) Apenas o GPS é considerado um sensor.</span></label>
+                    <label class="alt-fix"><input type="radio" name="ft2q3" value="C"><span>C) Aplicativos podem usar sensores como GPS, câmera e acelerômetro.</span></label>
+                    <label class="alt-fix"><input type="radio" name="ft2q3" value="D"><span>D) Sensores só funcionam em computadores desktop.</span></label>
+                </div>
+                <button class="btn-gab" onclick="verificarFix('ft2q3','C','Os dispositivos móveis integram diversos sensores (GPS, câmera, acelerômetro, giroscópio etc.) que podem ser acessados pelos apps.','fix-t2-3')">Ver resposta</button>
+                <div class="gab-fix"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         TÓPICO 3 — DOM e Interatividade
+         ============================================================ -->
+    <div class="secao-titulo">🌐 TÓPICO 3 · DOM e Interatividade com JavaScript</div>
+
+    <div class="topico">
+        <h3>📖 O que você precisa saber</h3>
+        <ul>
+            <li><strong>DOM (Document Object Model):</strong> é a <strong>representação em memória</strong> da estrutura da página. Cada elemento HTML vira um "nó" (objeto) que o JavaScript pode acessar.</li>
+            <li><strong>Para que serve:</strong> permite ao JS <strong>localizar, ler, modificar e remover</strong> elementos da tela em tempo real — sem recarregar a página.</li>
+            <li><strong>Exemplos práticos:</strong> mudar o texto de um botão, alterar uma cor, esconder uma seção, validar um formulário.</li>
+            <li><strong>Métodos comuns:</strong> <code>document.getElementById()</code>, <code>document.querySelector()</code>, <code>element.innerHTML</code>, <code>element.style</code>, <code>element.classList</code>.</li>
+            <li><strong>Propriedade <code>.checked</code>:</strong> booleana (<code>true</code> / <code>false</code>) usada para saber se um <code>&lt;input type="checkbox"&gt;</code> está marcado. Diferente de <code>.value</code>, que retorna o texto do campo.</li>
+        </ul>
+        <div class="destaque">
+            ⚠️ <strong>Ponto de atenção:</strong> não confunda <code>.value</code> (valor de texto de inputs) com <code>.checked</code> (estado de marcação de checkbox/radio).
+        </div>
+
+        <!-- Fixação T3 -->
+        <div class="fixacao">
+            <div class="fixacao-titulo">🎯 Questões de fixação — Tópico 3</div>
+
+            <div class="fixacao-item" id="fix-t3-1">
+                <div class="pergunta">1. O que é o DOM (Document Object Model)?</div>
+                <div class="alternativas-fix">
+                    <label class="alt-fix"><input type="radio" name="ft3q1" value="A"><span>A) Um banco de dados do navegador.</span></label>
+                    <label class="alt-fix"><input type="radio" name="ft3q1" value="B"><span>B) A representação da estrutura da página que permite ao JS manipulá-la.</span></label>
+                    <label class="alt-fix"><input type="radio" name="ft3q1" value="C"><span>C) Uma linguagem de estilização.</span></label>
+                    <label class="alt-fix"><input type="radio" name="ft3q1" value="D"><span>D) Um servidor web.</span></label>
+                </div>
+                <button class="btn-gab" onclick="verificarFix('ft3q1','B','O DOM é a representação em memória da página, permitindo ao JavaScript acessar e modificar elementos dinamicamente.','fix-t3-1')">Ver resposta</button>
+                <div class="gab-fix"></div>
+            </div>
+
+            <div class="fixacao-item" id="fix-t3-2">
+                <div class="pergunta">2. Para saber se um <code>&lt;input type="checkbox"&gt;</code> foi marcado, qual propriedade JavaScript devemos usar?</div>
+                <div class="alternativas-fix">
+                    <label class="alt-fix"><input type="radio" name="ft3q2" value="A"><span>A) .value</span></label>
+                    <label class="alt-fix"><input type="radio" name="ft3q2" value="B"><span>B) .innerText</span></label>
+                    <label class="alt-fix"><input type="radio" name="ft3q2" value="C"><span>C) .checked</span></label>
+                    <label class="alt-fix"><input type="radio" name="ft3q2" value="D"><span>D) .className</span></label>
+                </div>
+                <button class="btn-gab" onclick="verificarFix('ft3q2','C','A propriedade .checked retorna true ou false indicando se o checkbox está marcado.','fix-t3-2')">Ver resposta</button>
+                <div class="gab-fix"></div>
+            </div>
+
+            <div class="fixacao-item" id="fix-t3-3">
+                <div class="pergunta">3. Qual das opções <strong>não</strong> é uma manipulação possível via DOM?</div>
+                <div class="alternativas-fix">
+                    <label class="alt-fix"><input type="radio" name="ft3q3" value="A"><span>A) Alterar o texto de um botão.</span></label>
+                    <label class="alt-fix"><input type="radio" name="ft3q3" value="B"><span>B) Mudar a cor de fundo de uma div.</span></label>
+                    <label class="alt-fix"><input type="radio" name="ft3q3" value="C"><span>C) Instalar um aplicativo no celular do usuário.</span></label>
+                    <label class="alt-fix"><input type="radio" name="ft3q3" value="D"><span>D) Esconder uma seção da página.</span></label>
+                </div>
+                <button class="btn-gab" onclick="verificarFix('ft3q3','C','O DOM manipula elementos da página. Instalar apps no dispositivo não é uma função do DOM.','fix-t3-3')">Ver resposta</button>
+                <div class="gab-fix"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         TÓPICO 4 — Planejamento e Wireframe
+         ============================================================ -->
+    <div class="secao-titulo">📐 TÓPICO 4 · Planejamento de Projeto e Wireframe</div>
+
+    <div class="topico">
+        <h3>📖 O que você precisa saber</h3>
+        <ul>
+            <li><strong>Fase de planejamento:</strong> antes de programar, é essencial pensar na estrutura, no fluxo e na experiência do usuário.</li>
+            <li><strong>Wireframe:</strong> esboço visual simples (geralmente em preto e branco) que mostra o <strong>layout</strong> e a <strong>hierarquia</strong> dos elementos da tela. Não tem cores nem detalhes finais.</li>
+            <li><strong>Vantagens do wireframe:</strong>
+                <ul>
+                    <li>Evita retrabalho de código.</li>
+                    <li>Reduz custos e tempo.</li>
+                    <li>Valida a ideia da interface antes de programar.</li>
+                    <li>Ajuda a alinhar a equipe e o cliente.</li>
+                </ul>
+            </li>
+            <li><strong>Outros artefatos:</strong> storyboard (sequência de telas), protótipo (versão navegável), UI/UX (design de interface e experiência).</li>
+            <li><strong>Low-code vs tradicional:</strong> plataformas visuais (App Inventor, Kodular, Thunkable) usam <strong>blocos de evento</strong> que correspondem, no código tradicional, a <strong>funções/manipuladores JavaScript</strong> (ex: <code>onclick</code>).</li>
+        </ul>
+        <div class="destaque">
+            ⚠️ <strong>Ponto de atenção:</strong> wireframe <strong>não é</strong> o código final. É um esboço de planejamento, feito antes da programação.
+        </div>
+
+        <!-- Fixação T4 -->
+        <div class="fixacao">
+            <div class="fixacao-titulo">🎯 Questões de fixação — Tópico 4</div>
+
+            <div class="fixacao-item" id="fix-t4-1">
+                <div class="pergunta">1. O que é um wireframe?</div>
+                <div class="alternativas-fix">
+                    <label class="alt-fix"><input type="radio" name="ft4q1" value="A"><span>A) Um arquivo APK de depuração.</span></label>
+                    <label class="alt-fix"><input type="radio" name="ft4q1" value="B"><span>B) Um esboço visual do layout e da hierarquia da interface.</span></label>
+                    <label class="alt-fix"><input type="radio" name="ft4q1" value="C"><span>C) Um banco de dados local.</span></label>
+                    <label class="alt-fix"><input type="radio" name="ft4q1" value="D"><span>D) Um tipo de sensor do celular.</span></label>
+                </div>
+                <button class="btn-gab" onclick="verificarFix('ft4q1','B','Wireframe é o esboço visual usado no planejamento para rascunhar o layout e a hierarquia da interface.','fix-t4-1')">Ver resposta</button>
+                <div class="gab-fix"></div>
+            </div>
+
+            <div class="fixacao-item" id="fix-t4-2">
+                <div class="pergunta">2. Qual é uma <strong>vantagem</strong> de criar um wireframe antes de programar?</div>
+                <div class="alternativas-fix">
+                    <label class="alt-fix"><input type="radio" name="ft4q2" value="A"><span>A) Aumentar a quantidade de código a ser escrito.</span></label>
+                    <label class="alt-fix"><input type="radio" name="ft4q2" value="B"><span>B) Evitar retrabalho e validar a ideia antes de programar.</span></label>
+                    <label class="alt-fix"><input type="radio" name="ft4q2" value="C"><span>C) Substituir completamente o código HTML.</span></label>
+                    <label class="alt-fix"><input type="radio" name="ft4q2" value="D"><span>D) Impedir a participação do cliente no projeto.</span></label>
+                </div>
+                <button class="btn-gab" onclick="verificarFix('ft4q2','B','O wireframe evita retrabalho, reduz custos e permite validar a interface antes de escrever código.','fix-t4-2')">Ver resposta</button>
+                <div class="gab-fix"></div>
+            </div>
+
+            <div class="fixacao-item" id="fix-t4-3">
+                <div class="pergunta">3. Em plataformas low-code (como App Inventor), um <strong>bloco de evento</strong> de clique corresponde, no desenvolvimento tradicional, a:</div>
+                <div class="alternativas-fix">
+                    <label class="alt-fix"><input type="radio" name="ft4q3" value="A"><span>A) Uma propriedade CSS.</span></label>
+                    <label class="alt-fix"><input type="radio" name="ft4q3" value="B"><span>B) Um elemento HTML puro.</span></label>
+                    <label class="alt-fix"><input type="radio" name="ft4q3" value="C"><span>C) Um manipulador/função JavaScript (como onclick).</span></label>
+                    <label class="alt-fix"><input type="radio" name="ft4q3" value="D"><span>D) Um arquivo de manifesto Android.</span></label>
+                </div>
+                <button class="btn-gab" onclick="verificarFix('ft4q3','C','Blocos de evento equivalem a manipuladores/funções JavaScript, como onclick, que respondem a ações do usuário.','fix-t4-3')">Ver resposta</button>
+                <div class="gab-fix"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         TÓPICO 5 — Sensores e Agregação de Valor
+         ============================================================ -->
+    <div class="secao-titulo">📡 TÓPICO 5 · Sensores e Agregação de Valor aos Apps</div>
+
+    <div class="topico">
+        <h3>📖 O que você precisa saber</h3>
+        <ul>
+            <li><strong>Sensores comuns:</strong> GPS (localização), câmera (fotos/leitura de códigos), acelerômetro (movimento), giroscópio (rotação), bússola (direção), sensor de proximidade, microfone.</li>
+            <li><strong>Como agregam valor:</strong> conectam o app ao <strong>mundo físico</strong> do usuário, tornando a experiência mais rica, personalizada e funcional.</li>
+            <li><strong>Exemplos práticos:</strong>
+                <ul>
+                    <li>GPS → apps de entrega, mapas, corrida.</li>
+                    <li>Câmera → leitura de QR Code, realidade aumentada, fotos.</li>
+                    <li>Acelerômetro → contador de passos, jogos controlados por movimento.</li>
+                    <li>Microfone → comandos de voz, gravação.</li>
+                </ul>
+            </li>
+            <li><strong>Permissões:</strong> para usar sensores, o app precisa declarar permissões no <code>AndroidManifest.xml</code> (ex: ACCESS_FINE_LOCATION para GPS).</li>
+        </ul>
+        <div class="destaque">
+            ⚠️ <strong>Ponto de atenção:</strong> a integração com sensores é um dos principais diferenciais dos apps móveis em relação a sites desktop.
+        </div>
+
+        <!-- Fixação T5 -->
+        <div class="fixacao">
+            <div class="fixacao-titulo">🎯 Questões de fixação — Tópico 5</div>
+
+            <div class="fixacao-item" id="fix-t5-1">
+                <div class="pergunta">1. Qual sensor é mais adequado para um aplicativo de rotas e mapas?</div>
+                <div class="alternativas-fix">
+                    <label class="alt-fix"><input type="radio" name="ft5q1" value="A"><span>A) Acelerômetro</span></label>
+                    <label class="alt-fix"><input type="radio" name="ft5q1" value="B"><span>B) GPS</span></label>
+                    <label class="alt-fix"><input type="radio" name="ft5q1" value="C"><span>C) Giroscópio</span></label>
+                    <label class="alt-fix"><input type="radio" name="ft5q1" value="D"><span>D) Sensor de proximidade</span></label>
+                </div>
+                <button class="btn-gab" onclick="verificarFix('ft5q1','B','O GPS fornece coordenadas geográficas, essenciais para apps de rotas, mapas e entregas.','fix-t5-1')">Ver resposta</button>
+                <div class="gab-fix"></div>
+            </div>
+
+            <div class="fixacao-item" id="fix-t5-2">
+                <div class="pergunta">2. Como os sensores podem agregar valor a um aplicativo?</div>
+                <div class="alternativas-fix">
+                    <label class="alt-fix"><input type="radio" name="ft5q2" value="A"><span>A) Deixando o app mais lento.</span></label>
+                    <label class="alt-fix"><input type="radio" name="ft5q2" value="B"><span>B) Impedindo o uso do app em movimento.</span></label>
+                    <label class="alt-fix"><input type="radio" name="ft5q2" value="C"><span>C) Conectando o app ao mundo físico do usuário, tornando-o mais funcional e personalizado.</span></label>
+                    <label class="alt-fix"><input type="radio" name="ft5q2" value="D"><span>D) Removendo a necessidade de internet.</span></label>
+                </div>
+                <button class="btn-gab" onclick="verificarFix('ft5q2','C','Sensores conectam o app ao ambiente físico, tornando a experiência mais rica e útil.','fix-t5-2')">Ver resposta</button>
+                <div class="gab-fix"></div>
+            </div>
+
+            <div class="fixacao-item" id="fix-t5-3">
+                <div class="pergunta">3. Um app que lê QR Codes utiliza principalmente qual sensor?</div>
+                <div class="alternativas-fix">
+                    <label class="alt-fix"><input type="radio" name="ft5q3" value="A"><span>A) Bússola</span></label>
+                    <label class="alt-fix"><input type="radio" name="ft5q3" value="B"><span>B) Câmera</span></label>
+                    <label class="alt-fix"><input type="radio" name="ft5q3" value="C"><span>C) Acelerômetro</span></label>
+                    <label class="alt-fix"><input type="radio" name="ft5q3" value="D"><span>D) Microfone</span></label>
+                </div>
+                <button class="btn-gab" onclick="verificarFix('ft5q3','B','A câmera é o sensor usado para capturar imagens, incluindo a leitura de QR Codes e códigos de barras.','fix-t5-3')">Ver resposta</button>
+                <div class="gab-fix"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================================
+         QUIZ FINAL — 20 QUESTÕES
+         ============================================================ -->
+    <div class="secao-titulo">🏆 QUIZ FINAL · 20 Questões Objetivas</div>
+
+    <div class="intro-card" style="border-left-color:#0ea5e9;">
+        🎯 <strong>Hora de testar!</strong> Responda as 20 questões abaixo <strong>sem consultar</strong> o material.
+        Ao final, clique em <strong>"Corrigir Quiz"</strong> para ver sua nota e o gabarito comentado.
+    </div>
+
+    <div id="quizContainer"></div>
+
+    <!-- BOTÕES DO QUIZ -->
+    <div class="acoes no-print">
+        <button class="btn" id="btnCorrigir" onclick="corrigirQuiz()">✅ Corrigir Quiz</button>
+        <button class="btn btn-secondary" onclick="limparQuiz()">🔄 Refazer Quiz</button>
+    </div>
+
+    <!-- RESULTADO FINAL -->
+    <div class="resultado-final" id="resultadoFinal">
+        <h2>📊 Resultado do Quiz</h2>
+        <div class="nota-final" id="notaFinal">0,0</div>
+        <div class="nota-descricao">Nota final (0,0 a 10,0)</div>
+
+        <div class="resultado-grid">
+            <div class="resultado-item">
+                <div class="numero" id="acertos">0/20</div>
+                <div class="rotulo">Acertos</div>
+            </div>
+            <div class="resultado-item">
+                <div class="numero" id="erros">0/20</div>
+                <div class="rotulo">Erros</div>
+            </div>
+            <div class="resultado-item">
+                <div class="numero" id="percentual">0%</div>
+                <div class="rotulo">Aproveitamento</div>
+            </div>
+        </div>
+
+        <div class="mensagem-final" id="mensagemFinal"></div>
+
+        <div class="acoes" style="margin-top:22px;">
+            <button class="btn btn-imprimir" onclick="window.print()">🖨️ Imprimir / Salvar PDF</button>
+        </div>
+    </div>
+
+    <!-- GABARITO CONSOLIDADO -->
+    <div class="gabarito-final" id="gabaritoFinal">
+        <h3>📋 Gabarito Consolidado — Quiz Final</h3>
+        <div class="gabarito-grid" id="gabaritoGrid"></div>
+    </div>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer-card no-print">
+        <p style="font-size:0.9rem; color:#0f766e; font-weight:700; margin-bottom:8px;">
+            📱 Guia de Estudo — Programação Mobile &bull; Nível Iniciante
+        </p>
+        <p>
+            Estude o resumo, responda as fixações, confira o gabarito e faça o quiz final.<br>
+            Bons estudos e boa prova! 🚀
+        </p>
+    </footer>
+
+</div>
+
+<script>
+    /* ============================================================
+       BANCO DE QUESTÕES DO QUIZ (20 QUESTÕES)
+       ============================================================ */
+    const QUIZ = [
+        // --- TÓPICO 1: HTML, CSS e JavaScript (Q1–Q4) ---
+        {
+            topico: 'HTML, CSS e JavaScript',
+            enunciado: 'Qual tecnologia é responsável por definir a <strong>estrutura</strong> e os elementos que existem na tela?',
+            alternativas: { A: 'CSS', B: 'JavaScript', C: 'HTML', D: 'Python' },
+            correta: 'C',
+            justificativa: 'O HTML (HyperText Markup Language) define a estrutura e os elementos da interface, como textos, títulos, botões e formulários.'
+        },
+        {
+            topico: 'HTML, CSS e JavaScript',
+            enunciado: 'Qual tecnologia cuida da <strong>aparência visual</strong>, definindo cores, fontes, margens e bordas?',
+            alternativas: { A: 'HTML', B: 'CSS', C: 'JavaScript', D: 'SQL' },
+            correta: 'B',
+            justificativa: 'O CSS (Cascading Style Sheets) é responsável pela estilização visual da aplicação.'
+        },
+        {
+            topico: 'HTML, CSS e JavaScript',
+            enunciado: 'Analise as afirmativas:<br><br><strong>(I)</strong> O HTML define a estrutura da tela.<br><strong>(II)</strong> O CSS cuida da aparência visual.<br><strong>(III)</strong> O JavaScript substitui completamente o HTML e o CSS.<br><br>Assinale a sequência correta de V ou F:',
+            alternativas: { A: 'V – V – F', B: 'V – F – V', C: 'F – V – V', D: 'V – V – V' },
+            correta: 'A',
+            justificativa: 'I e II são verdadeiras. III é falsa: o JavaScript adiciona comportamento e interatividade, mas não substitui HTML e CSS.'
+        },
+        {
+            topico: 'HTML, CSS e JavaScript',
+            enunciado: 'Qual é o papel do <strong>JavaScript</strong> em uma aplicação web/mobile?',
+            alternativas: {
+                A: 'Definir a estrutura da página.',
+                B: 'Estilizar cores e fontes.',
+                C: 'Adicionar comportamento e interatividade.',
+                D: 'Armazenar dados no servidor.'
+            },
+            correta: 'C',
+            justificativa: 'O JavaScript é responsável pelo comportamento e interatividade: responder a cliques, validar formulários, alterar conteúdo em tempo real.'
+        },
+
+        // --- TÓPICO 2: Android e Dispositivos Móveis (Q5–Q8) ---
+        {
+            topico: 'Android e Dispositivos Móveis',
+            enunciado: 'Qual é a camada base da arquitetura do sistema operacional Android?',
+            alternativas: { A: 'Framework de aplicação', B: 'Kernel Linux', C: 'Dalvik', D: 'Google Play' },
+            correta: 'B',
+            justificativa: 'A arquitetura do Android tem o Kernel Linux como camada base, sobre a qual todas as demais são construídas.'
+        },
+        {
+            topico: 'Android e Dispositivos Móveis',
+            enunciado: 'O que é o <strong>ART</strong> no contexto do Android?',
+            alternativas: {
+                A: 'Um editor de imagens.',
+                B: 'Uma linguagem de programação.',
+                C: 'O Android Runtime, evolução da Dalvik.',
+                D: 'Um banco de dados do sistema.'
+            },
+            correta: 'C',
+            justificativa: 'O ART (Android Runtime) foi introduzido como evolução da máquina virtual Dalvik, trazendo compilação AOT e melhor desempenho.'
+        },
+        {
+            topico: 'Android e Dispositivos Móveis',
+            enunciado: 'Analise as afirmativas:<br><br><strong>(I)</strong> O Android possui Kernel Linux em sua camada base.<br><strong>(II)</strong> O ART é uma evolução da Dalvik.<br><strong>(III)</strong> Dispositivos móveis não possuem sensores físicos integrados.<br><br>Assinale a sequência correta:',
+            alternativas: { A: 'F – V – F', B: 'V – V – F', C: 'V – F – V', D: 'V – V – V' },
+            correta: 'B',
+            justificativa: 'I e II são verdadeiras. III é falsa: dispositivos móveis integram diversos sensores (GPS, câmera, acelerômetro etc.).'
+        },
+        {
+            topico: 'Android e Dispositivos Móveis',
+            enunciado: 'Qual arquivo declara permissões e componentes de um aplicativo Android?',
+            alternativas: { A: 'index.html', B: 'style.css', C: 'AndroidManifest.xml', D: 'package.json' },
+            correta: 'C',
+            justificativa: 'O AndroidManifest.xml é o arquivo de configuração que declara permissões, atividades e componentes do app Android.'
+        },
+
+        // --- TÓPICO 3: DOM e Interatividade (Q9–Q12) ---
+        {
+            topico: 'DOM e Interatividade',
+            enunciado: 'Qual estrutura permite ao JavaScript localizar, ler e modificar elementos da tela em tempo real?',
+            alternativas: { A: 'CSS Grid', B: 'DOM', C: 'Kernel Linux', D: 'AndroidManifest.xml' },
+            correta: 'B',
+            justificativa: 'O DOM (Document Object Model) é a representação da estrutura da página que permite ao JS manipular elementos dinamicamente.'
+        },
+        {
+            topico: 'DOM e Interatividade',
+            enunciado: 'Para verificar se um <code>&lt;input type="checkbox"&gt;</code> está marcado, usamos qual propriedade?',
+            alternativas: { A: '.value', B: '.innerText', C: '.checked', D: '.className' },
+            correta: 'C',
+            justificativa: 'A propriedade .checked é booleana (true/false) e indica se o checkbox está marcado.'
+        },
+        {
+            topico: 'DOM e Interatividade',
+            enunciado: 'Qual das opções abaixo <strong>não</strong> é uma manipulação possível via DOM?',
+            alternativas: {
+                A: 'Alterar o texto de um botão.',
+                B: 'Mudar a cor de fundo de uma div.',
+                C: 'Instalar um aplicativo no celular do usuário.',
+                D: 'Esconder uma seção da página.'
+            },
+            correta: 'C',
+            justificativa: 'O DOM manipula elementos da página. Instalar aplicativos no dispositivo não é uma função do DOM.'
+        },
+        {
+            topico: 'DOM e Interatividade',
+            enunciado: 'Qual método JavaScript é comumente usado para selecionar um elemento pelo seu <code>id</code>?',
+            alternativas: {
+                A: 'document.querySelectorAll()',
+                B: 'document.getElementById()',
+                C: 'document.createElement()',
+                D: 'document.write()'
+            },
+            correta: 'B',
+            justificativa: 'document.getElementById() seleciona um elemento pelo seu atributo id. querySelectorAll() seleciona vários; createElement() cria; write() escreve no documento.'
+        },
+
+        // --- TÓPICO 4: Planejamento e Wireframe (Q13–Q16) ---
+        {
+            topico: 'Planejamento e Wireframe',
+            enunciado: 'Qual ferramenta/esboço é usado no planejamento para rascunhar o layout e a hierarquia da interface?',
+            alternativas: { A: 'APK Debug', B: 'Wireframe', C: 'Motor de física', D: 'Compilador C++' },
+            correta: 'B',
+            justificativa: 'O wireframe é o esboço visual usado no planejamento para representar o layout e a hierarquia dos elementos da interface.'
+        },
+        {
+            topico: 'Planejamento e Wireframe',
+            enunciado: 'Qual é uma <strong>vantagem</strong> de criar um wireframe antes de programar?',
+            alternativas: {
+                A: 'Aumentar a quantidade de código.',
+                B: 'Evitar retrabalho e validar a ideia antes de programar.',
+                C: 'Substituir o HTML.',
+                D: 'Impedir a participação do cliente.'
+            },
+            correta: 'B',
+            justificativa: 'O wireframe evita retrabalho, reduz custos e tempo, e permite validar a interface antes da escrita do código.'
+        },
+        {
+            topico: 'Planejamento e Wireframe',
+            enunciado: 'Em plataformas low-code, um <strong>bloco de evento</strong> de clique corresponde, no desenvolvimento tradicional, a:',
+            alternativas: {
+                A: 'Uma propriedade CSS.',
+                B: 'Um elemento HTML puro.',
+                C: 'Um manipulador/função JavaScript (como onclick).',
+                D: 'Um arquivo de manifesto Android.'
+            },
+            correta: 'C',
+            justificativa: 'Blocos de evento equivalem a manipuladores/funções JavaScript, como onclick, que respondem a ações do usuário.'
+        },
+        {
+            topico: 'Planejamento e Wireframe',
+            enunciado: 'O que é um <strong>storyboard</strong> no contexto de desenvolvimento mobile?',
+            alternativas: {
+                A: 'Um banco de dados local.',
+                B: 'Uma sequência de telas que representa o fluxo do app.',
+                C: 'Um tipo de sensor.',
+                D: 'Um arquivo CSS.'
+            },
+            correta: 'B',
+            justificativa: 'O storyboard é uma sequência de telas que representa o fluxo de navegação do aplicativo, usado no planejamento.'
+        },
+
+        // --- TÓPICO 5: Sensores (Q17–Q20) ---
+        {
+            topico: 'Sensores e Agregação de Valor',
+            enunciado: 'Qual sensor é mais adequado para um aplicativo de rotas e mapas?',
+            alternativas: { A: 'Acelerômetro', B: 'GPS', C: 'Giroscópio', D: 'Sensor de proximidade' },
+            correta: 'B',
+            justificativa: 'O GPS fornece coordenadas geográficas, essenciais para apps de rotas, mapas e entregas.'
+        },
+        {
+            topico: 'Sensores e Agregação de Valor',
+            enunciado: 'Um app que lê QR Codes utiliza principalmente qual sensor?',
+            alternativas: { A: 'Bússola', B: 'Câmera', C: 'Acelerômetro', D: 'Microfone' },
+            correta: 'B',
+            justificativa: 'A câmera é o sensor usado para capturar imagens, incluindo a leitura de QR Codes e códigos de barras.'
+        },
+        {
+            topico: 'Sensores e Agregação de Valor',
+            enunciado: 'Como os sensores podem agregar valor a um aplicativo?',
+            alternativas: {
+                A: 'Deixando o app mais lento.',
+                B: 'Impedindo o uso do app em movimento.',
+                C: 'Conectando o app ao mundo físico do usuário, tornando-o mais funcional.',
+                D: 'Removendo a necessidade de internet.'
+            },
+            correta: 'C',
+            justificativa: 'Sensores conectam o app ao ambiente físico do usuário, tornando a experiência mais rica, personalizada e funcional.'
+        },
+        {
+            topico: 'Sensores e Agregação de Valor',
+            enunciado: 'Qual sensor é usado para detectar o movimento e a rotação do dispositivo, sendo comum em jogos controlados por movimento?',
+            alternativas: { A: 'GPS', B: 'Câmera', C: 'Acelerômetro/Giroscópio', D: 'Microfone' },
+            correta: 'C',
+            justificativa: 'O acelerômetro detecta movimento linear e o giroscópio detecta rotação. Ambos são usados em jogos controlados por movimento.'
+        }
+    ];
+
+    /* ============================================================
+       RENDERIZAR O QUIZ
+       ============================================================ */
+    function renderizarQuiz() {
+        const container = document.getElementById('quizContainer');
+        let html = '';
+
+        QUIZ.forEach((q, idx) => {
+            const num = idx + 1;
+            let altsHTML = '';
+            Object.keys(q.alternativas).forEach(letra => {
+                altsHTML += `
+                    <label class="quiz-alt" data-q="${num}" data-letra="${letra}">
+                        <input type="radio" name="quiz${num}" value="${letra}">
+                        <span><strong>${letra})</strong> ${q.alternativas[letra]}</span>
+                    </label>
+                `;
+            });
+
+            html += `
+                <div class="quiz-questao" id="quiz-q${num}">
+                    <div class="quiz-header">
+                        <span class="quiz-num">Questão ${num} · ${q.topico}</span>
+                    </div>
+                    <div class="quiz-enunciado">${q.enunciado}</div>
+                    <div class="alternativas">${altsHTML}</div>
+                    <div class="gab-quiz" id="gab-quiz${num}"></div>
+                </div>
+            `;
+        });
+
+        container.innerHTML = html;
+
+        // Clique na alternativa marca o radio
+        document.querySelectorAll('.quiz-alt').forEach(alt => {
+            alt.addEventListener('click', function(e) {
+                if (this.classList.contains('desabilitada')) return;
+                const input = this.querySelector('input[type="radio"]');
+                if (input && !input.disabled) input.checked = true;
+            });
+        });
+    }
+
+    /* ============================================================
+       VERIFICAR FIXAÇÃO (gabarito na hora)
+       ============================================================ */
+    function verificarFix(nome, correta, justificativa, idItem) {
+        const selecionada = document.querySelector(`input[name="${nome}"]:checked`);
+        if (!selecionada) {
+            alert('⚠️ Marque uma alternativa antes de ver a resposta!');
+            return;
+        }
+
+        const item = document.getElementById(idItem);
+        const alternativas = item.querySelectorAll('.alt-fix');
+        const gabBox = item.querySelector('.gab-fix');
+
+        alternativas.forEach(alt => {
+            const input = alt.querySelector('input');
+            const letra = input.value;
+            input.disabled = true;
+            alt.classList.add('desabilitada');
+
+            if (letra === correta) alt.classList.add('correta');
+            else if (letra === selecionada.value) alt.classList.add('incorreta');
+        });
+
+        const acertou = selecionada.value === correta;
+        gabBox.innerHTML = `
+            ${acertou ? '✅ <strong>Você acertou!</strong>' : '❌ <strong>Resposta incorreta.</strong>'}
+            A alternativa correta é <strong>${correta}</strong>.<br>
+            📖 <em>${justificativa}</em>
+        `;
+        gabBox.classList.add('show');
+
+        // Desabilita o botão
+        item.querySelector('.btn-gab').disabled = true;
+        item.querySelector('.btn-gab').innerText = '✅ Respondido';
+    }
+
+    /* ============================================================
+       CORRIGIR QUIZ
+       ============================================================ */
+    function corrigirQuiz() {
+        // Verificar se todas foram respondidas
+        let faltando = [];
+        QUIZ.forEach((q, idx) => {
+            const num = idx + 1;
+            if (!document.querySelector(`input[name="quiz${num}"]:checked`)) {
+                faltando.push(num);
+            }
+        });
+
+        if (faltando.length > 0) {
+            alert('⚠️ Responda todas as questões antes de corrigir!\n\nFaltando: ' + faltando.map(n => 'Q' + n).join(', '));
+            return;
+        }
+
+        let acertos = 0;
+
+        QUIZ.forEach((q, idx) => {
+            const num = idx + 1;
+            const selecionada = document.querySelector(`input[name="quiz${num}"]:checked`).value;
+            const correta = q.correta;
+            const acertou = selecionada === correta;
+
+            if (acertou) acertos++;
+
+            const questao = document.getElementById(`quiz-q${num}`);
+            const alternativas = questao.querySelectorAll('.quiz-alt');
+
+            alternativas.forEach(alt => {
+                const input = alt.querySelector('input');
+                const letra = input.value;
+
+                input.disabled = true;
+                alt.classList.add('desabilitada');
+
+                if (letra === correta) alt.classList.add('correta');
+                else if (letra === selecionada && !acertou) alt.classList.add('incorreta');
+            });
+
+            const gabBox = document.getElementById(`gab-quiz${num}`);
+            gabBox.innerHTML = `
+                ${acertou ? '✅ <strong>Correta!</strong>' : '❌ <strong>Incorreta.</strong>'}
+                Resposta certa: <strong>${correta}</strong>.<br>
+                📖 ${q.justificativa}
+            `;
+            gabBox.classList.add('show');
+        });
+
+        // Calcular nota
+        const nota = (acertos / QUIZ.length) * 10;
+        const erros = QUIZ.length - acertos;
+        const percentual = Math.round((acertos / QUIZ.length) * 100);
+
+        document.getElementById('notaFinal').innerText = nota.toFixed(1).replace('.', ',');
+        document.getElementById('acertos').innerText = `${acertos}/${QUIZ.length}`;
+        document.getElementById('erros').innerText = `${erros}/${QUIZ.length}`;
+        document.getElementById('percentual').innerText = `${percentual}%`;
+
+        // Mensagem final
+        let msg = '';
+        if (percentual >= 90) {
+            msg = '🏆 <strong>Excelente!</strong> Você domina os fundamentos de Programação Mobile. Está pronto(a) para a avaliação!';
+        } else if (percentual >= 70) {
+            msg = '👏 <strong>Muito bom!</strong> Você compreendeu os principais conceitos. Revise os pontos que errou para consolidar o aprendizado.';
+        } else if (percentual >= 50) {
+            msg = '📚 <strong>Bom começo!</strong> Você já domina alguns conceitos, mas é importante revisar os tópicos com dificuldade antes da prova.';
+        } else {
+            msg = '💡 <strong>Atenção!</strong> Recomendamos revisar o material com calma, refazer as fixações e tentar o quiz novamente. Não desanime!';
+        }
+        document.getElementById('mensagemFinal').innerHTML = msg;
+
+        // Gabarito consolidado
+        let gridHTML = '';
+        QUIZ.forEach((q, idx) => {
+            const num = idx + 1;
+            const selecionada = document.querySelector(`input[name="quiz${num}"]:checked`).value;
+            const acertou = selecionada === q.correta;
+            gridHTML += `
+                <div class="gab-item" style="border-left-color:${acertou ? '#16a34a' : '#dc2626'};">
+                    <span><strong>Q${num}:</strong> ${q.correta}</span>
+                    <span>${acertou ? '✅' : '❌'}</span>
+                </div>
+            `;
+        });
+        document.getElementById('gabaritoGrid').innerHTML = gridHTML;
+
+        // Exibir resultado e gabarito
+        document.getElementById('resultadoFinal').classList.add('show');
+        document.getElementById('gabaritoFinal').classList.add('show');
+        document.getElementById('btnCorrigir').disabled = true;
+        document.getElementById('btnCorrigir').innerText = '✅ Quiz corrigido';
+
+        document.getElementById('resultadoFinal').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    /* ============================================================
+       LIMPAR QUIZ
+       ============================================================ */
+    function limparQuiz() {
+        if (!confirm('Tem certeza que deseja refazer o quiz? Todas as respostas serão apagadas.')) return;
+
+        document.querySelectorAll('input[type="radio"][name^="quiz"]').forEach(r => {
+            r.checked = false;
+            r.disabled = false;
+        });
+
+        document.querySelectorAll('#quizContainer .quiz-alt').forEach(a => {
+            a.classList.remove('correta', 'incorreta', 'desabilitada');
+        });
+
+        document.querySelectorAll('.gab-quiz').forEach(g => {
+            g.classList.remove('show');
+            g.innerHTML = '';
+        });
+
+        document.getElementById('resultadoFinal').classList.remove('show');
+        document.getElementById('gabaritoFinal').classList.remove('show');
+        document.getElementById('gabaritoGrid').innerHTML = '';
+
+        const btn = document.getElementById('btnCorrigir');
+        btn.disabled = false;
+        btn.innerText = '✅ Corrigir Quiz';
+
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    /* ============================================================
+       INICIALIZAÇÃO
+       ============================================================ */
+    document.addEventListener('DOMContentLoaded', () => {
+        renderizarQuiz();
+    });
+</script>
+
+</body>
+</html>
